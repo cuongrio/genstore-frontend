@@ -1,0 +1,37 @@
+<div class="padding-main">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-3">
+        <search-sidebar (updateFields)="updateFields($event)"></search-sidebar>
+      </div>
+      <div class="col-md-9" *ngIf="!isLoading">
+        <div class="filter-search">
+          <div class="pull-left">
+            <strong>{{total}}</strong>&nbsp;<span translate>Results</span>
+          </div>
+          <div class="pull-right form-inline">
+            <select class="select-1" (change)="changeSort('createdAt', $event)" name="createdAt">
+              <option value="" translate>Latest</option>
+              <option value="asc" translate>Oldest to Newest</option>
+              <option value="desc" translate>Newest to Oldest</option>
+            </select>
+            <select class="select-1" (change)="changeSort('salePrice', $event)" name="price">
+              <option value="" translate>Price</option>
+              <option value="asc" translate>Lowest to Highest</option>
+              <option value="desc" translate>Highest to Lowest</option>
+            </select>
+          </div>
+        </div>
+        <ul class="list-product row">
+          <div class="badge badge-warning" translate *ngIf="!total">No products found</div>
+          <li class="col-sm-6 col-md-4" *ngFor="let item of items">
+            <product-card [product]="item"></product-card>
+          </li>
+        </ul>
+        <div class="pull-right" *ngIf="total > itemsPerPage">
+          <ngb-pagination [pageSize]="itemsPerPage" [collectionSize]="total" [(page)]="page" [maxSize]="5" (pageChange)="query()"></ngb-pagination>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

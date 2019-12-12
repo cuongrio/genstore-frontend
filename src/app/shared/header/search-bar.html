@@ -1,0 +1,29 @@
+<div class="header-bottom">
+  <div class="container">
+    <div class="nav-header">
+      <div class="category-top">
+        <!-- Click add class open-->
+        <div  class="label-categories"><i class="fa fa-bars"></i>
+          Categories
+          </div>
+          <div class="show-categories">
+            <ul>
+              <li *ngFor="let item of tree">
+                <a class="dropdown-item" (click)="search(item)">{{item.name}}</a>
+              </li>
+            </ul>
+          </div>
+        
+      </div>
+      <div class="mainmenu">
+        <ul class="nav navbar-nav navbar-collapse">
+          <li><a [routerLink]="['/']" [ngClass]="{'active': router.url === '/'}" translate>Home</a></li>
+          <li><a appLocationHref [url]="'/products/search'" [ngClass]="{'active': router.url === '/products/search'}"
+              translate>Products</a></li>
+          <li><a appLocationHref [url]="'/shops/search'" [ngClass]="{'active': router.url === '/shops/search'}"
+              translate>Shops</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>

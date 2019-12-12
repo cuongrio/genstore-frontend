@@ -1,0 +1,88 @@
+<header id="header">
+  <!--header-->
+  <div class="header_top">
+    <!--header_top-->
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-6 ">
+          <div class="contactinfo">
+            <ul class="nav nav-pills">
+              <li *ngIf="appConfig?.publicPhone">
+                <a href="tel:{{appConfig.publicPhone}}"><i class="fa fa-phone"></i>{{appConfig.publicPhone}}</a>
+              </li>
+              <li *ngIf="appConfig?.publicEmail">
+                <a href="mailto:{{appConfig?.publicEmail}}"><i class="fa fa-envelope"></i> {{appConfig?.publicEmail}}</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-sm-6">
+          <div class="social-icons pull-right">
+            <ul class="nav navbar-nav">
+              <li *ngIf="appConfig?.socialLinks?.facebook"><a [href]="appConfig?.socialLinks?.facebook"><i class="fa fa-facebook"></i></a></li>
+              <li *ngIf="appConfig?.socialLinks?.twitter"><a [href]="appConfig?.socialLinks?.twitter"><i class="fa fa-twitter"></i></a></li>
+              <li *ngIf="appConfig?.socialLinks?.linkedin"><a [href]="appConfig?.socialLinks?.linkedin"><i class="fa fa-linkedin"></i></a></li>
+              <li *ngIf="appConfig?.socialLinks?.dribbble"><a [href]="appConfig?.socialLinks?.dribbble"><i class="fa fa-dribbble"></i></a></li>
+              <li *ngIf="appConfig?.socialLinks?.google"><a [href]="appConfig?.socialLinks?.google"><i class="fa fa-google-plus"></i></a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--/header_top-->
+  <div class="header-middle">
+    <!--header-middle-->
+    
+        <div class="container">
+          <div class="logo pull-left">
+            <a [routerLink]="['/']">
+              <img [src]="appConfig?.siteLogo" *ngIf="appConfig?.siteLogo" />
+              <span *ngIf="!appConfig?.siteLogo">{{appConfig?.siteName}}</span>
+            </a>
+          </div>
+          <div class="search_box pull-left">
+            <input type="text" [(ngModel)]="q" (keypress)="keyPress($event)" placeholder="{{'Search' | translate}}" />
+          </div>
+          <div class="shop-menu pull-right">
+            <div class="cart-top">
+              <a appLocationHref [url]="'/cart/checkout'">
+                <img src="/assets/images/cart.png">
+                <span>{{cart ? cart.length : 0}}</span>
+              </a>
+            </div>
+            <div class="input-group-prepend lang-dropdown pull-right">
+              <div ngbDropdown class="d-inline-block" *ngIf="isLoaded">
+                <button class="btn btn-outline-secondary dropdown-toggle flag-dropdown" type="button" id="dropdownLanguage" ngbDropdownToggle>
+                  <img class="flag" [src]="flag" width="25px" />
+                </button>
+                <div ngbDropdownMenu aria-labelledby="dropdownLanguage" class="drop-menu-lang">
+                  <button class="dropdown-item flags" type="button" *ngFor="let lang of languages" (click)="changeLang(lang.key)">
+                    <img class="flag" [src]="'/assets/images/flags/' + lang.key + '.svg'" width="25px" /> {{lang.name}} </button>
+                </div>
+              </div>
+            </div>
+            <ul class="nav navbar-nav pull-right " *ngIf="!currentUser">
+              <li><a [routerLink]="['/auth/signup']"><i class="fa fa-user"></i> <span translate>Sign up</span></a></li>
+              <li><a [routerLink]="['/auth/login']"><i class="fa fa-lock"></i> <span translate>Login</span></a></li>
+            </ul>
+            <div class="dropdown pull-right user-dropdown" *ngIf="currentUser" ngbDropdown>
+              <a class="btn btn-secondary dropdown-toggle toggle-user" ngbDropdownToggle role="button" (click)="dropdown()" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <img [src]="currentUser?.avatarUrl" class="avatar-circle"><span>{{currentUser.name}}</span> </a>
+              <div class="dropdown-menu" ngbDropdownMenu aria-labelledby="dropdownMenuLink">
+                <a class="dropdown-item" appLocationHref [url]="'/profile/update'"><i class="fa fa-user"></i>&nbsp;<span translate>Update Profile</span></a>
+                <a class="dropdown-item" appLocationHref [url]="'/orders/list'"><i class="fa fa-shopping-cart"></i>&nbsp;<span translate>Orders History</span></a>
+                <a class="dropdown-item" appLocationHref [url]="'/profile/wishlist'"><i class="fa fa-heart"></i>&nbsp;<span translate>My Wishlist</span></a>
+                <a class="dropdown-item" appLocationHref [url]="'/profile/refunds'"><i class="fa fa-dollar"></i>&nbsp;&nbsp;<span translate>Refund Requests</span></a>
+                <a class="dropdown-item" [routerLink]="" (click)="complain()"><i class="fa fa-flag"></i>&nbsp;<span translate>Complain</span></a>
+                <a class="dropdown-item" appLocationHref [url]="'/messages/conversations'"><i class="fa fa-comments"></i>
+                  <span translate>Messages</span></a>
+                <a class="dropdown-item" [routerLink]="" (click)="logout()"><i class="fa fa-lock"></i>&nbsp;<span translate>Log out</span></a>
+              </div>
+            </div>
+          </div>
+        </div>
+   
+  </div>
+  <!--/header-middle-->
+</header>

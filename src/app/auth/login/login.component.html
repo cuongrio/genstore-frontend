@@ -1,0 +1,54 @@
+<div class="row row-detail-main justify-content-center pad-bt-45">
+  <div class="col-md-4">
+    <div class="card">
+      <article class="card-body login-form">
+        <form class="form-horizontal form-material" (submit)="login(frm)" #frm="ngForm">
+          <h3 class="box-title m-b-20" translate>Sign In</h3>
+          <div class="form-group ">
+            <div class="col-xs-12">
+              <input class="form-control" placeholder="{{'Email' | translate}}" required type="text" autocomplete="off" name="email" #email="ngModel" pattern="[A-Za-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" [(ngModel)]="credentials.email" />
+              <div *ngIf="email.errors && (email.dirty || email.touched || submitted)">
+                <p [hidden]="!email.errors.required" class="error" translate>
+                  Email is required
+                </p>
+                <p [hidden]="!email.errors.pattern" class="error" translate>
+                  Email is required
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="form-group ">
+            <div class="col-xs-12">
+              <input class="form-control" placeholder="{{'Password' | translate}}" required type="password" autocomplete="off" name="pw" [minlength]="6" #password="ngModel" [(ngModel)]="credentials.password" />
+              <div *ngIf="password.errors && (password.dirty || password.touched || submitted)">
+                <p [hidden]="!password.errors.minlength" class="error" translate>
+                  Password must be at least 6 characters!
+                </p>
+                <p [hidden]="!password.errors.required" class="error" translate>
+                  Password is required
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="form-group row">
+            <div class="col-md-12 font-14">
+              <a [routerLink]="['/auth/signup']" class="color-dark pull-left underline" translate>Register</a>
+              <a class="color-dark pull-right underline" [routerLink]="['/auth/forgot']" translate> Forgot password?</a>
+            </div>
+          </div>
+          <div class="form-group text-center m-t-20">
+            <button class="btn btn-default" type="submit" translate>Log In</button>
+          </div>
+        </form>
+        <div class="socials-box">
+          <div class="social-login facebook">
+            <facebook-login></facebook-login>
+          </div>
+          <div class="social-login google">
+            <google-login></google-login>
+          </div>
+        </div>
+      </article>
+    </div>
+  </div>
+</div>

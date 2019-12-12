@@ -1,0 +1,9 @@
+
+<div class="slide-banner-new">
+
+  <ngx-slick-carousel class="carousel carousel-row" #slickModal="slick-carousel" [config]="slideConfig">
+    <div ngxSlickItem *ngFor="let slide of banners, let i= index" class="slide">
+      <a [href]="slide.link" target="_blank"><img [src]="slide?.imageUrl" alt="" width="100%"></a>
+    </div>
+  </ngx-slick-carousel>
+</div>

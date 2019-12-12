@@ -1,0 +1,94 @@
+<app-banner></app-banner>
+<div class="padding-main">
+  <div class="container">
+    <div class="box-main-1">
+      <div class="title-main">
+        <h4 translate>Featured</h4>
+        <div class="list-view-all"><a [routerLink]="['/products/search']" [queryParams]="{featured: 1}" translate>View all</a></div>
+      </div>
+      <div class="body-box-main">
+        <featured-products [options]="{featured: 1}"></featured-products>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="padding-main">
+  <div class="container">
+    <div class="title-main">
+      <h4 translate>Daily Deal</h4>
+      <div class="list-view-all"><a [routerLink]="['/products/search']" [queryParams]="{dailyDeal: 1}" translate>View all</a></div>
+    </div>
+    <div class="body-box-main">
+      <featured-products [options]="{dailyDeal: 1, showDeal: 1}"></featured-products>
+    </div>
+  </div>
+</div>
+<div class="padding-main feature-shop bg-cover" style="background: url(/assets/images/bg-1.jpg);">
+  <div class="container">
+    <h2 class="title-center" translate>Easy keeps you safe</h2>
+    <div class="row">
+      <div class="col-sm-4" *ngIf="appConfig && appConfig.securityIcon1">
+        <img [src]="appConfig.securityIcon1 ? appConfig.securityIcon1.iconUrl : '/assets/images/icon.png'">
+        <h4 translate>{{appConfig?.securityIcon1?.title}}</h4>
+        {{appConfig?.securityIcon1?.displayText}}
+      </div>
+      <div class="col-sm-4" *ngIf="appConfig && appConfig.securityIcon2">
+        <img [src]="appConfig.securityIcon2 ? appConfig.securityIcon2.iconUrl : '/assets/images/icon1.png'">
+        <h4 translate>{{appConfig?.securityIcon2?.title}}</h4>
+        {{appConfig?.securityIcon2?.displayText}}
+      </div>
+      <div class="col-sm-4" *ngIf="appConfig && appConfig.securityIcon3">
+        <img [src]="appConfig.securityIcon3 ? appConfig.securityIcon3.iconUrl : '/assets/images/icon2.png'">
+        <h4 translate>{{appConfig?.securityIcon3?.title}}</h4>
+        {{appConfig?.securityIcon3?.displayText}}
+      </div>
+    </div>
+  </div>
+</div>
+<div class="padding-main bg-grey">
+  <div class="container">
+    <div class="title-main">
+      <h4 translate>Best Sale</h4>
+      <div class="list-view-all"><a [routerLink]="['/products/search']" [queryParams]="{bestSell: 1}" translate>View all</a></div>
+    </div>
+    <div class="body-box-main">
+      <featured-products [options]="{bestSell: 1}"></featured-products>
+    </div>
+  </div>
+</div>
+<div class="padding-main bg-grey">
+  <div class="container">
+    <div class="title-main">
+      <h4 translate>Hottest</h4>
+      <div class="list-view-all"><a [routerLink]="['/products/search']" [queryParams]="{hot: 1}" translate>View all</a></div>
+    </div>
+    <div class="body-box-main">
+      <featured-products [options]="{hot: 1}"></featured-products>
+    </div>
+  </div>
+</div>
+<div class="padding-main" *ngIf="shops.length">
+  <div class="container">
+    <div class="title-main">
+      <h4><span translate>Shops</span></h4>
+      <div class="list-view-all"><a appLocationHref [url]="'/shops/search'" translate>View all</a></div>
+    </div>
+    <ul class="list-product list-shop row">
+      <li class="col-sm-6" *ngFor="let shop of shops">
+        <shop-card [shop]="shop"></shop-card>
+      </li>
+    </ul>
+    <!-- <ngx-slick-carousel class="carousel carousel-row" #slickModal="slick-carousel" [config]="slideConfig">
+      <div ngxSlickItem *ngFor="let shop of shops" class="item-slider-pro">
+        <shop-card [shop]="shop"></shop-card>
+      </div>
+    </ngx-slick-carousel> -->
+  </div>
+</div>
+<div class="padding-main action-register bg-cover" style="background: url(/assets/images/bg-2.jpg);">
+  <div class="container">
+    <h2> <span translate>Start selling on</span> {{siteName}} </h2>
+    <p translate>Milions of shoppers can’t wait to see what you have in store.</p>
+    <a [href]="sellerUrl" target="_blank" class="button-action" translate>Become A Seller</a>
+  </div>
+</div>
