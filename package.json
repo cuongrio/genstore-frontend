@@ -38,7 +38,7 @@
     "core-js": "^3.4.8",
     "immutable": "^3.8.2",
     "jasmine": "^3.5.0",
-    "jquery": "^3.4.1",
+    "jquery": "^3.5.0",
     "lodash": "^4.17.15",
     "ng2-dragula": "^2.1.1",
     "ng2-smart-table": "^1.5.0",
