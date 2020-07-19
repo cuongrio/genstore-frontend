@@ -39,7 +39,7 @@
     "immutable": "^3.8.2",
     "jasmine": "^3.5.0",
     "jquery": "^3.4.1",
-    "lodash": "^4.17.15",
+    "lodash": "^4.17.19",
     "ng2-dragula": "^2.1.1",
     "ng2-smart-table": "^1.5.0",
     "ng2-toasty": "^4.0.3",
